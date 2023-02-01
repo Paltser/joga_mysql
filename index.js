@@ -42,6 +42,17 @@ app.get("/", (req, res) => {
         })
     })
 });
+app.get('/article/:slug', (req, res) => {
+    let query = `SELECT * FROM article where slug="${req.params.slug}"`;
+    let article
+    con.query(query, (err, result)=>{
+        if (err) throw err
+        article = result
+        res.render('article', {
+            article: article
+        })
+    })
+});
 
 process.on('uncaughtException', (err) => {
     console.error('Uncaught Exception: ', err);

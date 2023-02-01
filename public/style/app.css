@@ -1,5 +1,5 @@
 .alert {
-    background-color: #B83E3E;
+    background-color: #ff0101;
     color: #fff;
     margin: 24px;
     max-width: 700px;
@@ -82,7 +82,7 @@ form textarea {
 
 header {
     background-color: #fff;
-    box-shadow: 0 5px 5px red;
+    box-shadow: 0 5px 5px #b010d2;
     font-size: 160%;
     font-weight: bold;
     padding: 24px;
