@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const artivlecontroller = require('../controllers/article')
+const articlecontroller = require('../controllers/article')
 
-router.get('/', artivlecontroller.getAllArticles)
-router.get('/article/:slug', artivlecontroller.getArticleBySlug)
+router.get('/', articlecontroller.getAllArticles)
+router.get('/article/:slug', articlecontroller.getArticleBySlug)
 
 module.exports = router;
