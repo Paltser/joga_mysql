@@ -31,33 +31,9 @@ con.connect(function (err){
     console.log('connected to joga_mysql db')
 
 })
-app.get("/", (req, res) => {
-    let query = 'SELECT * FROM article';
-    let articles = []
-    con.query(query, (err, result)=>{
-        if (err) throw err
-        articles = result
-        res.render('index', {
-            articles: articles
-        })
-    })
-});
-
-app.get('/article/:slug', (req, res) => {
-    let query = `
-    SELECT article.name, article.published, article.body, article.image, author.name as author_name, author.id as author_id
-    FROM article
-    JOIN author ON article.author_id = author.id
-    WHERE article.slug="${req.params.slug}"`;
-    let article
-    con.query(query, (err, result) => {
-        if (err) throw err;
-        article = result[0];
-        res.render('article', {
-            article: article
-        });
-    });
-});
+const articleRouts = require('./routers/article')
+app.use('/',articleRouts)
+app.use('/article', articleRouts)
 app.get('/author/:id', (req, res) => {
     let query = `SELECT article.name as article_name, article.image, article.slug ,author.name, article.body
     from article JOIN author ON article.author_id = author.id where author.id = ${req.params.id}`;
@@ -71,7 +47,6 @@ app.get('/author/:id', (req, res) => {
         });
     });
 });
-
 
 
 process.on('uncaughtException', (err) => {
